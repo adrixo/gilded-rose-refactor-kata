@@ -6,41 +6,44 @@ public class ItemDecorator extends Item {
     }
 
     void updateQuality() {
-        if (name.equals("Sulfuras, Hand of Ragnaros")){
-            // Never degradates properties
-            return;
-        } else if (name.equals("Aged Brie")) {
-            // Aged properties
-            increaseQuality();
-            if (sellIn < 0) {
+        switch(name) {
+            case "Sulfuras, Hand of Ragnaros":
+                // Never degradates properties
+                break;
+            case "Aged Brie":
+                // Aged properties
+                increaseQuality();
+                if (sellIn < 0) {
+                    // Aged properties with threshold
+                    increaseQuality();
+                }
+                break;
+            case "Backstage passes to a TAFKAL80ETC concert":
+                if (sellIn < 0) {
+                    // Extreme degradation with threshold
+                    dropQualityToZero();
+                    return;
+                }
                 // Aged properties with threshold
                 increaseQuality();
-            }
-        } else if (name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            if (sellIn < 0) {
-                // Extreme degradation with threshold
-                dropQualityToZero();
-                return;
-            }
-            // Aged properties with threshold
-            increaseQuality();
 
-            if (sellIn < 10) {
-                // Aged properties with threshold
-                increaseQuality();
-            }
+                if (sellIn < 10) {
+                    // Aged properties with threshold
+                    increaseQuality();
+                }
 
-            if (sellIn < 5) {
-                // Aged properties with threshold
-                increaseQuality();
-            }
-        } else {
-            // degradation property
-            decreaseQuality();
-            if (sellIn < 0) {
-                // degradation property with threshold
+                if (sellIn < 5) {
+                    // Aged properties with threshold
+                    increaseQuality();
+                }
+                break;
+            default:
+                // degradation property
                 decreaseQuality();
-            }
+                if (sellIn < 0) {
+                    // degradation property with threshold
+                    decreaseQuality();
+                }
         }
     }
 
