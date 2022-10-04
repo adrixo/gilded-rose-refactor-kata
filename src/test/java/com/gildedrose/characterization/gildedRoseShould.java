@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class GildedRoseTest {
+class gildedRoseShould {
 
     @Test void
     reduce_non_passed_item_quality_once_each_day() {
