@@ -1,14 +1,14 @@
 package com.gildedrose.characterization;
 
 class GildedRose {
-    Item[] items;
+    ItemDecorator[] items;
 
-    public GildedRose(Item[] items) {
+    public GildedRose(ItemDecorator[] items) {
         this.items = items;
     }
 
     public void updateQuality() {
-        for (Item item : items) {
+        for (ItemDecorator item : items) {
             if (!item.name.equals("Aged Brie")
                     && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                 if (item.quality > 0) {
