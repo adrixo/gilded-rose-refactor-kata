@@ -5,6 +5,37 @@ public class ItemDecorator extends Item {
         super(name, sellIn, quality);
     }
 
+    void updateQuality() {
+        if (name.equals("Sulfuras, Hand of Ragnaros")){
+            return;
+        } else if (name.equals("Aged Brie")) {
+            increaseQuality();
+            if (sellIn < 0) {
+                increaseQuality();
+            }
+        } else if (name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            if (sellIn < 0) {
+                dropQualityToZero();
+                return;
+            }
+
+            increaseQuality();
+
+            if (sellIn < 10) {
+                increaseQuality();
+            }
+
+            if (sellIn < 5) {
+                increaseQuality();
+            }
+        } else {
+            decreaseQuality();
+            if (sellIn < 0) {
+                decreaseQuality();
+            }
+        }
+    }
+
     void reduceSellIn() {
         if (name.equals("Sulfuras, Hand of Ragnaros"))
             return;
