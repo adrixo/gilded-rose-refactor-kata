@@ -14,10 +14,14 @@ public class ItemDecorator extends Item {
     }
 
     void decreaseQuality() {
+        if (quality<=0)
+            return;
         quality--;
     }
 
     void increaseQuality() {
+        if (quality >= 50)
+            return;
         quality++;
     }
 }
