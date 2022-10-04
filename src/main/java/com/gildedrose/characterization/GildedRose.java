@@ -13,23 +13,23 @@ class GildedRose {
                     && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                 if (item.quality > 0) {
                     if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                        item.quality = decreaseQuality(item);
+                        item.decreaseQuality();
                     }
                 }
             } else {
                 if (item.quality < 50) {
-                    item.quality = increaseQuality(item);
+                    item.increaseQuality();
 
                     if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         if (item.sellIn < 11) {
                             if (item.quality < 50) {
-                                item.quality = increaseQuality(item);
+                                item.increaseQuality();
                             }
                         }
 
                         if (item.sellIn < 6) {
                             if (item.quality < 50) {
-                                item.quality = increaseQuality(item);
+                                item.increaseQuality();
                             }
                         }
                     }
@@ -37,7 +37,7 @@ class GildedRose {
             }
 
             if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                item.sellIn = reduceSellIn(item);
+                item.reduceSellIn();
             }
 
             if (item.sellIn < 0) {
@@ -45,34 +45,18 @@ class GildedRose {
                     if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         if (item.quality > 0) {
                             if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                                item.quality = decreaseQuality(item);
+                                item.decreaseQuality();
                             }
                         }
                     } else {
-                        item.quality = dropQualityToZero();
+                        item.dropQualityToZero();
                     }
                 } else {
                     if (item.quality < 50) {
-                        item.quality = increaseQuality(item);
+                        item.increaseQuality();
                     }
                 }
             }
         }
-    }
-
-    private static int reduceSellIn(Item item) {
-        return item.sellIn - 1;
-    }
-
-    private int dropQualityToZero() {
-        return 0;
-    }
-
-    private static int decreaseQuality(Item item) {
-        return item.quality - 1;
-    }
-
-    private static int increaseQuality(Item item) {
-        return item.quality + 1;
     }
 }
