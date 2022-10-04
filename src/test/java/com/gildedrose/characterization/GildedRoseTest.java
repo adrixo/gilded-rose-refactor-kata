@@ -1,5 +1,6 @@
-package com.gildedrose;
+package com.gildedrose.characterization;
 
+import com.gildedrose.characterization.GildedRose;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
