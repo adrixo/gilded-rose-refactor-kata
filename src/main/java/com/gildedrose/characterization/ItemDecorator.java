@@ -16,16 +16,12 @@ public class ItemDecorator extends Item {
     }
 
     void decreaseQuality() {
-        if (name.equals("Sulfuras, Hand of Ragnaros"))
-            return;
         if (quality<=0)
             return;
         quality--;
     }
 
     void increaseQuality() {
-        if (name.equals("Sulfuras, Hand of Ragnaros"))
-            return;
         if (quality >= 50)
             return;
         quality++;
