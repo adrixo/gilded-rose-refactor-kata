@@ -1,4 +1,4 @@
-package com.gildedrose.characterization;
+package com.gildedrose.sourcecode;
 
 class GildedRose {
     Item[] items;
