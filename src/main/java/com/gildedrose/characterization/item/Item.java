@@ -1,4 +1,4 @@
-package com.gildedrose.characterization;
+package com.gildedrose.characterization.item;
 
 public class Item {
 

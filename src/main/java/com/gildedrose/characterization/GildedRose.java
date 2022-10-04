@@ -1,14 +1,16 @@
 package com.gildedrose.characterization;
 
-class GildedRose {
-    ItemDecorator[] items;
+import com.gildedrose.characterization.item.BasicItemDecorator;
 
-    public GildedRose(ItemDecorator[] items) {
+class GildedRose {
+    BasicItemDecorator[] items;
+
+    public GildedRose(BasicItemDecorator[] items) {
         this.items = items;
     }
 
     public void updateQuality() {
-        for (ItemDecorator item : items) {
+        for (BasicItemDecorator item : items) {
             item.reduceSellIn();
 
             item.updateQuality();

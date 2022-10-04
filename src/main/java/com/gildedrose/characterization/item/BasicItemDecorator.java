@@ -1,4 +1,4 @@
-package com.gildedrose.characterization;
+package com.gildedrose.characterization.item;
 
 public class BasicItemDecorator extends Item {
 
@@ -14,7 +14,7 @@ public class BasicItemDecorator extends Item {
         this.item = new Item(name, sellIn, quality);
     }
 
-    void updateQuality() {
+    public void updateQuality() {
         switch(item.name) {
             case "Sulfuras, Hand of Ragnaros":
                 // Never degradates properties
@@ -56,7 +56,7 @@ public class BasicItemDecorator extends Item {
         }
     }
 
-    void reduceSellIn() {
+    public void reduceSellIn() {
         if (item.name.equals("Sulfuras, Hand of Ragnaros"))
             // Never pass properties
             return;
