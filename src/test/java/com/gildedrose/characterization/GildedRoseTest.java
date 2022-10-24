@@ -23,7 +23,7 @@ class GildedRoseTest {
     @Test public void
     reduce_passed_item_quality_twice_each_day() {
         String itemName = "A item";
-        BasicItemDecorator[] items = new BasicItemDecorator[] { new BasicItemDecorator(itemName, -1, 3) };
+        BasicItemDecorator[] items = new BasicItemDecorator[] {ItemFactory.create(itemName, -1, 3)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertThat(items[0].toString()).isEqualTo(itemName+", -2, 1");
