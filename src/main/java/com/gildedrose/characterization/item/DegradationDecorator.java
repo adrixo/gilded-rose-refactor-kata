@@ -21,10 +21,9 @@ public class DegradationDecorator extends BasicItemDecorator {
 
     @Override
     public void updateQuality() {
-        if (qualityThreshold.belongs(superItem.quality))
-            this.superItem.decreaseQuality();
-
-        this.superItem.updateQuality();
+        if (qualityThreshold.belongs(superItem.getQuality()))
+            superItem.decreaseQuality();
+        superItem.updateQuality();
     }
 
     @Override
@@ -35,5 +34,15 @@ public class DegradationDecorator extends BasicItemDecorator {
     @Override
     public int getQuality() {
         return superItem.getSellIn();
+    }
+
+    @Override
+    public String toString() {
+        return superItem.toString();
+    }
+
+    @Override
+    public void decreaseQuality() {
+        superItem.decreaseQuality();
     }
 }

@@ -2,33 +2,33 @@ package com.gildedrose.characterization.item;
 
 public class BasicItemDecorator extends Item {
 
-    public final Item item;
+    public final Item superItem;
 
     public BasicItemDecorator(Item item) {
         super(item.name, item.sellIn, item.quality);
-        this.item = item;
+        this.superItem = item;
     }
 
     public BasicItemDecorator(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
-        this.item = new Item(name, sellIn, quality);
+        this.superItem = new Item(name, sellIn, quality);
     }
 
     public void updateQuality() {
-        switch(item.name) {
+        switch(superItem.name) {
             case "Sulfuras, Hand of Ragnaros":
                 // Never degradates properties
                 break;
             case "Aged Brie":
                 // Aged properties
                 increaseQuality();
-                if (item.sellIn < 0) {
+                if (superItem.sellIn < 0) {
                     // Aged properties with threshold
                     increaseQuality();
                 }
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
-                if (item.sellIn < 0) {
+                if (superItem.sellIn < 0) {
                     // Extreme degradation with threshold
                     dropQualityToZero();
                     return;
@@ -36,20 +36,18 @@ public class BasicItemDecorator extends Item {
                 // Aged properties with threshold
                 increaseQuality();
 
-                if (item.sellIn < 10) {
+                if (superItem.sellIn < 10) {
                     // Aged properties with threshold
                     increaseQuality();
                 }
 
-                if (item.sellIn < 5) {
+                if (superItem.sellIn < 5) {
                     // Aged properties with threshold
                     increaseQuality();
                 }
                 break;
             default:
-                // degradation property
-                decreaseQuality();
-                if (item.sellIn < 0) {
+                if (superItem.sellIn < 0) {
                     // degradation property with threshold
                     decreaseQuality();
                 }
@@ -57,38 +55,38 @@ public class BasicItemDecorator extends Item {
     }
 
     public void reduceSellIn() {
-        if (item.name.equals("Sulfuras, Hand of Ragnaros"))
+        if (superItem.name.equals("Sulfuras, Hand of Ragnaros"))
             // Never pass properties
             return;
         // Time pass properties
-        item.sellIn--;
+        superItem.sellIn--;
     }
 
     public int getSellIn() {
-        return item.sellIn;
+        return superItem.sellIn;
     }
 
     public int getQuality() {
-        return item.quality;
+        return superItem.quality;
     }
 
     void dropQualityToZero() {
-        item.quality = 0;
+        superItem.quality = 0;
     }
 
     void decreaseQuality() {
-        if (item.quality<=0)
+        if (superItem.quality<=0)
             return;
-        item.quality--;
+        superItem.quality--;
     }
 
     void increaseQuality() {
-        if (item.quality >= 50)
+        if (superItem.quality >= 50)
             return;
-        item.quality++;
+        superItem.quality++;
     }
 
     public String toString() {
-        return item.toString();
+        return superItem.toString();
     }
 }

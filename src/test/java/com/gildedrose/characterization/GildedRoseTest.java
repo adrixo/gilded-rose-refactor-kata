@@ -1,6 +1,7 @@
 package com.gildedrose.characterization;
 
 import com.gildedrose.characterization.item.BasicItemDecorator;
+import com.gildedrose.characterization.item.ItemFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -13,7 +14,7 @@ class GildedRoseTest {
     @Test void
     reduce_non_passed_item_quality_once_each_day() {
         String itemName = "A item";
-        BasicItemDecorator[] items = new BasicItemDecorator[] { new BasicItemDecorator(itemName, 3, 3) };
+        BasicItemDecorator[] items = new BasicItemDecorator[] {ItemFactory.create(itemName, 3, 3) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertThat(items[0].toString()).isEqualTo(itemName+", 2, 2");
@@ -136,7 +137,7 @@ class GildedRoseTest {
 
     @Test
     public void
-    maintain_sulfuras_legendary_item_sellIn_and_quality() {
+    secondmaintain_sulfuras_legendary_item_sellIn_and_quality() {
         String itemName = "Sulfuras, Hand of Ragnaros";
         BasicItemDecorator[] items = new BasicItemDecorator[] { new BasicItemDecorator(itemName, 0, 80) };
         GildedRose app = new GildedRose(items);

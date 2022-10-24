@@ -12,7 +12,6 @@ class GildedRose {
     public void updateQuality() {
         for (BasicItemDecorator item : items) {
             item.reduceSellIn();
-
             item.updateQuality();
         }
     }
