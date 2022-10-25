@@ -137,7 +137,7 @@ class GildedRoseTest {
 
     @Test
     public void
-    secondmaintain_sulfuras_legendary_item_sellIn_and_quality() {
+    maintain_sulfuras_legendary_item_sellIn_and_quality() {
         String itemName = "Sulfuras, Hand of Ragnaros";
         BasicItemDecorator[] items = new BasicItemDecorator[] { new BasicItemDecorator(itemName, 0, 80) };
         GildedRose app = new GildedRose(items);
