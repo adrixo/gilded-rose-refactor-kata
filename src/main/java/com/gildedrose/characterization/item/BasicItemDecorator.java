@@ -18,7 +18,6 @@ public class BasicItemDecorator extends Item {
         switch(superItem.name) {
             case "Sulfuras, Hand of Ragnaros":
                 // Never degradates properties
-                decreaseQuality();
                 break;
             case "Aged Brie":
                 break;
@@ -42,10 +41,7 @@ public class BasicItemDecorator extends Item {
                 }
                 break;
             default:
-                if (superItem.sellIn < 0) {
-                    // degradation property with threshold
-                    decreaseQuality();
-                }
+                break;
         }
     }
 
