@@ -15,27 +15,6 @@ public class BasicItemDecorator extends Item {
     }
 
     public void updateQuality() {
-        switch(item.name) {
-            case "Backstage passes to a TAFKAL80ETC concert":
-                if (item.sellIn < 0) {
-                    // Extreme degradation with threshold
-                    dropQualityToZero();
-                    return;
-                }
-                // Aged properties with threshold
-                increaseQuality();
-
-                if (item.sellIn < 10) {
-                    // Aged properties with threshold
-                    increaseQuality();
-                }
-
-                if (item.sellIn < 5) {
-                    // Aged properties with threshold
-                    increaseQuality();
-                }
-                break;
-        }
     }
 
     public void reduceSellIn() {

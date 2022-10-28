@@ -17,7 +17,14 @@ public class ItemFactory {
                 return belowZeroImprove;
 
             case "Backstage passes to a TAFKAL80ETC concert":
-                return base;
+                BasicItemDecorator constantImproves = new ImprovementDecorator(base);
+                BasicItemDecorator below10Improve = new ImprovementDecorator(constantImproves);
+                ((ImprovementDecorator) below10Improve).qualityThreshold = new Threshold(10, ">");
+                BasicItemDecorator below5Improve = new ImprovementDecorator(below10Improve);
+                ((ImprovementDecorator) below5Improve).qualityThreshold = new Threshold(5, ">");
+                BasicItemDecorator extremeDegradation = new ExtremeDegradation(below5Improve);
+                ((ExtremeDegradation) extremeDegradation).qualityThreshold = new Threshold(0, ">");
+                return extremeDegradation;
 
             default:
                 BasicItemDecorator belowZeroDegradation = new DegradationDecorator(base);

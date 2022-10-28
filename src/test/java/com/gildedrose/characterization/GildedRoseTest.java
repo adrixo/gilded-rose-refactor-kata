@@ -85,7 +85,7 @@ class GildedRoseTest {
     public void
     increase_backstage_passes_normally_when_are_10_days_or_more(int sellIn, int quality, String expected) {
         String itemName = "Backstage passes to a TAFKAL80ETC concert";
-        BasicItemDecorator[] items = new BasicItemDecorator[]{new BasicItemDecorator(itemName, sellIn, quality)};
+        BasicItemDecorator[] items = new BasicItemDecorator[]{ItemFactory.create(itemName, sellIn, quality)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertThat(items[0].toString()).isEqualTo(itemName + ", " + expected);
@@ -100,7 +100,7 @@ class GildedRoseTest {
     public void
     increase_backstage_passes_twice_when_are_10_days_or_less(int sellIn, int quality, String expected) {
         String itemName = "Backstage passes to a TAFKAL80ETC concert";
-        BasicItemDecorator[] items = new BasicItemDecorator[] { new BasicItemDecorator(itemName, sellIn, quality) };
+        BasicItemDecorator[] items = new BasicItemDecorator[] { ItemFactory.create(itemName, sellIn, quality) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertThat(items[0].toString()).isEqualTo(itemName+", " + expected);
@@ -114,7 +114,7 @@ class GildedRoseTest {
     public void
     increase_backstage_passes_trice_when_are_5_days_or_less(int sellIn, int quality, String expected) {
         String itemName = "Backstage passes to a TAFKAL80ETC concert";
-        BasicItemDecorator[] items = new BasicItemDecorator[] { new BasicItemDecorator(itemName, sellIn, quality) };
+        BasicItemDecorator[] items = new BasicItemDecorator[] { ItemFactory.create(itemName, sellIn, quality) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertThat(items[0].toString()).isEqualTo(itemName+", " + expected);
@@ -128,7 +128,7 @@ class GildedRoseTest {
     public void
     decrease_to_zero_backstage_once_sellIn_passes(int sellIn, int quality, String expected) {
         String itemName = "Backstage passes to a TAFKAL80ETC concert";
-        BasicItemDecorator[] items = new BasicItemDecorator[] { new BasicItemDecorator(itemName, sellIn, quality) };
+        BasicItemDecorator[] items = new BasicItemDecorator[] { ItemFactory.create(itemName, sellIn, quality) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertThat(items[0].toString()).isEqualTo(itemName+", " + expected);

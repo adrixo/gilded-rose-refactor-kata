@@ -3,13 +3,13 @@ package com.gildedrose.characterization.item;
 import com.gildedrose.characterization.threshold.NullThreshold;
 import com.gildedrose.characterization.threshold.ThresholdI;
 
-public class ImprovementDecorator extends BasicItemDecorator {
+public class ExtremeDegradation extends BasicItemDecorator {
 
     private final BasicItemDecorator superItem;
     public ThresholdI sellInThreshold = new NullThreshold();
     public ThresholdI qualityThreshold = new NullThreshold();
 
-    public ImprovementDecorator(BasicItemDecorator item) {
+    public ExtremeDegradation(BasicItemDecorator item) {
         super(item.name, item.sellIn, item.quality);
         this.superItem = item;
     }
@@ -21,8 +21,10 @@ public class ImprovementDecorator extends BasicItemDecorator {
 
     @Override
     public void updateQuality() {
-        if (qualityThreshold.belongs(superItem.getQuality()))
-            superItem.increaseQuality();
+        if (qualityThreshold.belongs(superItem.getQuality())) {
+            superItem.dropQualityToZero();
+            return;
+        }
         superItem.updateQuality();
     }
 
@@ -50,9 +52,4 @@ public class ImprovementDecorator extends BasicItemDecorator {
     public void increaseQuality() {
         superItem.increaseQuality();
     }
-
-    void dropQualityToZero() {
-        superItem.dropQualityToZero();
-    }
-
 }
