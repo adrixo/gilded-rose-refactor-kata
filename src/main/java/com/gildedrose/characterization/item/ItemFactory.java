@@ -9,13 +9,18 @@ public class ItemFactory {
         switch(name) {
             case "Sulfuras, Hand of Ragnaros":
                 return new NonDegradable(base);
+
             case "Aged Brie":
-                return base;
+                BasicItemDecorator constantImprove = new ImprovementDecorator(base);
+                BasicItemDecorator belowZeroImprove = new ImprovementDecorator(constantImprove);
+                ((ImprovementDecorator) belowZeroImprove).qualityThreshold = new Threshold(0, ">");
+                return belowZeroImprove;
+
             case "Backstage passes to a TAFKAL80ETC concert":
                 return base;
+
             default:
                 BasicItemDecorator belowZeroDegradation = new DegradationDecorator(base);
-
                 BasicItemDecorator constantDegradation = new DegradationDecorator(belowZeroDegradation);
                 ((DegradationDecorator) belowZeroDegradation).qualityThreshold = new Threshold(0, ">=");
                 return constantDegradation;

@@ -18,14 +18,9 @@ public class BasicItemDecorator extends Item {
         switch(superItem.name) {
             case "Sulfuras, Hand of Ragnaros":
                 // Never degradates properties
+                decreaseQuality();
                 break;
             case "Aged Brie":
-                // Aged properties
-                increaseQuality();
-                if (superItem.sellIn < 0) {
-                    // Aged properties with threshold
-                    increaseQuality();
-                }
                 break;
             case "Backstage passes to a TAFKAL80ETC concert":
                 if (superItem.sellIn < 0) {

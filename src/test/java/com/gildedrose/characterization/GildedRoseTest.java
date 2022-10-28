@@ -38,7 +38,7 @@ class GildedRoseTest {
     public void
     avoid_to_reduce_quality_below_zero(int sellIn, int quality, String expected) {
         String itemName = "A item";
-        BasicItemDecorator[] items = new BasicItemDecorator[] { new BasicItemDecorator(itemName, sellIn, quality) };
+        BasicItemDecorator[] items = new BasicItemDecorator[] { ItemFactory.create(itemName, sellIn, quality) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertThat(items[0].toString()).isEqualTo(itemName+", " + expected);
@@ -47,7 +47,7 @@ class GildedRoseTest {
     @Test public void
     increase_aged_brie_quality_over_time() {
         String itemName = "Aged Brie";
-        BasicItemDecorator[] items = new BasicItemDecorator[] { new BasicItemDecorator(itemName, 3, 3) };
+        BasicItemDecorator[] items = new BasicItemDecorator[] { ItemFactory.create(itemName, 3, 3) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertThat(items[0].toString()).isEqualTo(itemName+", 2, 4");
@@ -56,7 +56,7 @@ class GildedRoseTest {
     @Test public void
     increase_passed_aged_brie_quality_over_time_twice() {
         String itemName = "Aged Brie";
-        BasicItemDecorator[] items = new BasicItemDecorator[] { new BasicItemDecorator(itemName, -1, 3) };
+        BasicItemDecorator[] items = new BasicItemDecorator[] { ItemFactory.create(itemName, -1, 3) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertThat(items[0].toString()).isEqualTo(itemName+", -2, 5");
@@ -71,7 +71,7 @@ class GildedRoseTest {
     public void
     avoid_increase_quality_over_50(int sellIn, int quality, String expected) {
         String itemName = "Aged Brie";
-        BasicItemDecorator[] items = new BasicItemDecorator[] { new BasicItemDecorator(itemName, sellIn, quality) };
+        BasicItemDecorator[] items = new BasicItemDecorator[] { ItemFactory.create(itemName, sellIn, quality) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertThat(items[0].toString()).isEqualTo(itemName+", " + expected);
@@ -139,7 +139,7 @@ class GildedRoseTest {
     public void
     maintain_sulfuras_legendary_item_sellIn_and_quality() {
         String itemName = "Sulfuras, Hand of Ragnaros";
-        BasicItemDecorator[] items = new BasicItemDecorator[] { new BasicItemDecorator(itemName, 0, 80) };
+        BasicItemDecorator[] items = new BasicItemDecorator[] { ItemFactory.create(itemName, 0, 80) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertThat(items[0].toString()).isEqualTo(itemName+", 0, 80");
