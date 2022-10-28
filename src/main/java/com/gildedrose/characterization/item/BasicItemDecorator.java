@@ -2,27 +2,22 @@ package com.gildedrose.characterization.item;
 
 public class BasicItemDecorator extends Item {
 
-    public final Item superItem;
+    public final Item item;
 
     public BasicItemDecorator(Item item) {
         super(item.name, item.sellIn, item.quality);
-        this.superItem = item;
+        this.item = item;
     }
 
     public BasicItemDecorator(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
-        this.superItem = new Item(name, sellIn, quality);
+        this.item = new Item(name, sellIn, quality);
     }
 
     public void updateQuality() {
-        switch(superItem.name) {
-            case "Sulfuras, Hand of Ragnaros":
-                // Never degradates properties
-                break;
-            case "Aged Brie":
-                break;
+        switch(item.name) {
             case "Backstage passes to a TAFKAL80ETC concert":
-                if (superItem.sellIn < 0) {
+                if (item.sellIn < 0) {
                     // Extreme degradation with threshold
                     dropQualityToZero();
                     return;
@@ -30,54 +25,48 @@ public class BasicItemDecorator extends Item {
                 // Aged properties with threshold
                 increaseQuality();
 
-                if (superItem.sellIn < 10) {
+                if (item.sellIn < 10) {
                     // Aged properties with threshold
                     increaseQuality();
                 }
 
-                if (superItem.sellIn < 5) {
+                if (item.sellIn < 5) {
                     // Aged properties with threshold
                     increaseQuality();
                 }
-                break;
-            default:
                 break;
         }
     }
 
     public void reduceSellIn() {
-        if (superItem.name.equals("Sulfuras, Hand of Ragnaros"))
-            // Never pass properties
-            return;
-        // Time pass properties
-        superItem.sellIn--;
+        item.sellIn--;
     }
 
     public int getSellIn() {
-        return superItem.sellIn;
+        return item.sellIn;
     }
 
     public int getQuality() {
-        return superItem.quality;
+        return item.quality;
     }
 
     void dropQualityToZero() {
-        superItem.quality = 0;
+        item.quality = 0;
     }
 
     void decreaseQuality() {
-        if (superItem.quality<=0)
+        if (item.quality<=0)
             return;
-        superItem.quality--;
+        item.quality--;
     }
 
     void increaseQuality() {
-        if (superItem.quality >= 50)
+        if (item.quality >= 50)
             return;
-        superItem.quality++;
+        item.quality++;
     }
 
     public String toString() {
-        return superItem.toString();
+        return item.toString();
     }
 }
